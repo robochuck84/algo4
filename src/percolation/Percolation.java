@@ -42,11 +42,11 @@ public class Percolation {
 		int iless = i - 1, imore = i + 1, jless = j - 1, jmore = j + 1;
 		if (iless > TOP_ROW && isOpen(iless, j))
 			qu.union(findInUF(iless, j), findInUF(i, j));
-		else if (jless > TOP_ROW && isOpen(i, jless))
+		if (jless > TOP_ROW && isOpen(i, jless))
 			qu.union(findInUF(i, jless), findInUF(i, j));
-		else if (imore <= N && isOpen(imore, j))
+		if (imore <= N && isOpen(imore, j))
 			qu.union(findInUF(imore, j), findInUF(i, j));
-		else if (jmore <= N && isOpen(i, jmore))
+		if (jmore <= N && isOpen(i, jmore))
 			qu.union(findInUF(i, jmore), findInUF(i, j));
 
 		sites[find(i, j)] = OPEN;
