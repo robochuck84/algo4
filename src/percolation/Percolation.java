@@ -82,7 +82,7 @@ public class Percolation {
 			if (i != 0 && (i+1) % N == 0)
 				sb.append("\n");
 		}
-		
+		sb.append(qu);
 		return sb.toString();
 	}
 	
@@ -92,18 +92,19 @@ public class Percolation {
 		
 		perc.open(1, 1);
 		System.out.println(perc);
+
 		
 		perc.open(2, 2);
 		System.out.println(perc);
+
+		
 		System.out.println(perc.percolates());
 		
 		perc.open(3, 2);
-		
 		System.out.println(perc);
 		
 		perc.open(1, 2);
 		System.out.println(perc);
 		System.out.println(perc.percolates());
-		System.out.println(perc.qu);
 	}
 }

@@ -49,7 +49,7 @@ public class WeightedQuickUnionUF {
     public String toString() {
     	StringBuffer sb = new StringBuffer();
     	for(int i = 0; i<id.length; i++) {
-    		sb.append("["+i+"]");
+    		sb.append("["+ id[i]+"]");
     	}
     	return sb.toString();
     }
