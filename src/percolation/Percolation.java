@@ -1,5 +1,3 @@
-package percolation;
-
 public class Percolation {
 
 	private static final int OPEN = 1;
@@ -8,7 +6,7 @@ public class Percolation {
 	private final int BOTTOM_ROW;
 
 	private int[] sites;
-	 WeightedQuickUnionUF qu;
+	private WeightedQuickUnionUF qu;
 	private int N;
 
 	public Percolation(int N) {
@@ -36,8 +34,6 @@ public class Percolation {
 
 		if (i == 1)
 			qu.union(TOP_ROW, findInUF(i, j));
-		if (i == (N))
-			qu.union(BOTTOM_ROW, findInUF(i, j));
 
 		int iless = i - 1, imore = i + 1, jless = j - 1, jmore = j + 1;
 		if (iless > TOP_ROW && isOpen(iless, j))
@@ -48,8 +44,15 @@ public class Percolation {
 			qu.union(findInUF(imore, j), findInUF(i, j));
 		if (jmore <= N && isOpen(i, jmore))
 			qu.union(findInUF(i, jmore), findInUF(i, j));
-
+		
 		sites[find(i, j)] = OPEN;
+		
+		for (int bottomIndex = 1; bottomIndex <= N; bottomIndex++) {
+			if (isOpen(N, bottomIndex) && isFull(N, bottomIndex)) {
+				qu.union(BOTTOM_ROW, findInUF(N, bottomIndex));
+			}
+		}
+
 	}
 
 	public boolean isOpen(int i, int j) {
@@ -74,18 +77,7 @@ public class Percolation {
 	public boolean percolates() {
 		return qu.connected(TOP_ROW, BOTTOM_ROW);
 	}
-	
-	public String toString() {
-		StringBuffer sb = new StringBuffer();
-		for (int i = 0; i < sites.length; i++) {
-			sb.append(sites[i]);
-			if (i != 0 && (i+1) % N == 0)
-				sb.append("\n");
-		}
-		sb.append(qu);
-		return sb.toString();
-	}
-	
+
 	public static void main(String[] args) {
 		Percolation perc = new Percolation(3);
 		System.out.println(perc);

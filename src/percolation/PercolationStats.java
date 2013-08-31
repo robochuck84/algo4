@@ -1,5 +1,4 @@
-package percolation;
-
+import java.math.BigDecimal;
 import java.util.Random;
 
 public class PercolationStats {
@@ -36,8 +35,9 @@ public class PercolationStats {
 
 		mean = sum / (double) T;
 
-		for (double exp : experimentValues)
-			sum += Math.pow((exp - mean), 2);
+		sum = 0.0;
+		for (double exp : experimentValues) 
+			sum += Math.pow(exp - mean, 2);
 
 		stddev = Math.sqrt(sum / (double) (T - 1));
 
@@ -67,8 +67,8 @@ public class PercolationStats {
 	}
 
 	public static void main(String[] args) {
-		int N = Integer.parseInt(args[0]);
-		int T = Integer.parseInt(args[1]);
+		int N = 200;//Integer.parseInt(args[0]);
+		int T = 100;//Integer.parseInt(args[1]);
 
 		PercolationStats stats = new PercolationStats(N, T);
 
